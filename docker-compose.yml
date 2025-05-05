@@ -1,0 +1,12 @@
+services:
+  database:
+    image: postgres:14.17-bookworm
+    restart: always
+    container_name: postgresDb
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
