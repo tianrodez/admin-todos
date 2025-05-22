@@ -15,7 +15,7 @@ import AppSidebarItem from "./app-sidebar-item";
 const menuItems = [
   { title: "Dashboard", icon: <LayoutDashboardIcon />, url: "/dashboard" },
   { title: "Rest TODOS", icon: <MdOutlineCategory />, url: "/dashboard/rest-todos" },
-  { title: "Server Actions", icon: <ArrowLeftRight />, url: "/dashboard/rest-todos" },
+  { title: "Server Actions", icon: <ArrowLeftRight />, url: "/dashboard/server-todos" },
 ];
 
 export function AppSidebar() {
