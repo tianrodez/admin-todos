@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { TodosGrid } from "@/todos";
+import { DeleteTodo, NewTodo, TodosGrid } from "@/todos";
 import { Metadata } from "next";
 import React from "react";
 
@@ -15,5 +15,13 @@ export default async function RestTodosPage() {
     },
   });
 
-  return <TodosGrid todos={todos} />;
+  return (
+    <>
+      <div className="flex gap-2 items-center justify-end">
+        <NewTodo />
+        <DeleteTodo />
+      </div>
+      <TodosGrid todos={todos} />
+    </>
+  );
 }
