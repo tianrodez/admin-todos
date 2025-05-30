@@ -1,5 +1,8 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import prisma from "@/lib/prisma";
-import { DeleteTodo, NewTodo, TodosGrid } from "@/todos";
+import { DeleteTodos, NewTodo, TodosGrid } from "@/todos";
 import { Metadata } from "next";
 import React from "react";
 
@@ -19,7 +22,7 @@ export default async function ServerTodosPage() {
     <>
       <div className="flex gap-2 items-center justify-end">
         <NewTodo />
-        <DeleteTodo />
+        <DeleteTodos />
       </div>
       <TodosGrid todos={todos} />
     </>

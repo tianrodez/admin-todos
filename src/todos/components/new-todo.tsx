@@ -21,10 +21,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useRouter } from "next/navigation";
-import * as todosApi from "@/todos/helpers/todos";
 import { useState } from "react";
 import { PlusCircle } from "lucide-react";
+import { addTodo } from "../actions/todo-actions";
 
 const createTodoSchema = z.object({
   description: z.string().min(10, {
@@ -33,7 +32,6 @@ const createTodoSchema = z.object({
 });
 
 export function NewTodo() {
-  const router = useRouter();
   const [open, setOpen] = useState(false);
 
   const form = useForm<z.infer<typeof createTodoSchema>>({
@@ -44,8 +42,8 @@ export function NewTodo() {
   });
 
   async function onSubmit(values: z.infer<typeof createTodoSchema>) {
-    todosApi.createTodo(values.description);
-    router.refresh();
+    await addTodo(values.description);
+    // router.refresh();
     setOpen(false);
   }
 

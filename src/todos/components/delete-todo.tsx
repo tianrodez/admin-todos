@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
-import { deleteAllTodos } from "@/todos/helpers/todos";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -20,16 +19,20 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { deleteCompleted } from "../actions/todo-actions";
+import { toast } from "sonner";
 
-export function DeleteTodo() {
+export function DeleteTodos() {
   const [openAlertDialog, setOpenAlertDialog] = useState(false);
-  const router = useRouter();
 
-  const deleteCompleted = async () => {
-    await deleteAllTodos(true);
+  const deleteTodos = async () => {
+    const { status, message } = await deleteCompleted();
+    toast(status, {
+      description: message,
+      closeButton: true,
+    });
+
     setOpenAlertDialog(false);
-    router.refresh();
   };
 
   return (
@@ -62,7 +65,7 @@ export function DeleteTodo() {
             <AlertDialogCancel onClick={() => setOpenAlertDialog(false)}>
               Cancel
             </AlertDialogCancel>
-            <AlertDialogAction onClick={() => deleteCompleted()}>
+            <AlertDialogAction onClick={() => deleteTodos()}>
               Continue
             </AlertDialogAction>
           </AlertDialogFooter>
