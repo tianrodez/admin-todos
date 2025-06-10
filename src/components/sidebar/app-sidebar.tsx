@@ -9,13 +9,15 @@ import {
 } from "@/components/ui/sidebar";
 import { MdOutlineCategory } from "react-icons/md";
 import { NavUser } from "../nav-user";
-import { ArrowLeftRight, LayoutDashboardIcon } from "lucide-react";
+import { ArrowLeftRight, CookieIcon, LayoutDashboardIcon, ShoppingBag } from "lucide-react";
 import AppSidebarItem from "./app-sidebar-item";
 
 const menuItems = [
   { title: "Dashboard", icon: <LayoutDashboardIcon />, url: "/dashboard" },
   { title: "Rest TODOS", icon: <MdOutlineCategory />, url: "/dashboard/rest-todos" },
   { title: "Server Actions", icon: <ArrowLeftRight />, url: "/dashboard/server-todos" },
+  { title: "Cookies", icon: <CookieIcon />, url: "/dashboard/cookies" },
+  { title: "Products", icon: <ShoppingBag />, url: "/dashboard/products" },
 ];
 
 export function AppSidebar() {
