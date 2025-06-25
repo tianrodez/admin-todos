@@ -43,7 +43,7 @@ export async function AppSidebar() {
         <NavUser
           user={{
             name: session?.user?.name ?? "Unknown User",
-            role: "Admin",
+            role: Array.isArray(session?.user?.roles) ? session?.user?.roles : [session?.user?.roles ?? "Client"],
             avatar: session?.user?.image ?? "",
           }}
         />
