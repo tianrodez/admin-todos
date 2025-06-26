@@ -16,6 +16,9 @@ docker compose up -d
 - Ejecuta el comando `npx prisma generate`
 - Ejecutar seed para [llenar la base de datos](http://localhost:3000/api/seed)
 
+## Notes:
+- __Default user and password__: testing@gmail.com / 123456
+
 # Prisma commands
 
 ```

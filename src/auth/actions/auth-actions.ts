@@ -1,5 +1,11 @@
 import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
+import { auth } from "@/auth/auth";
+
+export const getUserSessionServer = async () => {
+  const session = await auth();
+  return session?.user;
+};
 
 export const signEmailPassword = async (email: string, password: string) => {
   if (!email || !password) return null;

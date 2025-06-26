@@ -1,3 +1,4 @@
+import { getUserSessionServer } from "@/auth/actions/auth-actions";
 import prisma from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
@@ -8,10 +9,16 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
+  const user = await getUserSessionServer();
+  if (!user) {
+    return NextResponse.json("Not found", { status: 404 });
+  }
+
   try {
     const todo = await prisma.todo.findUniqueOrThrow({
       where: {
         id,
+        userId: user.id,
       },
     });
 
@@ -41,11 +48,16 @@ export async function PUT(
   const { description, complete } = await putSchema.validate(
     await request.json()
   );
+  const user = await getUserSessionServer();
+  if (!user) {
+    return null;
+  }
 
   try {
     const updatedTodo = await prisma.todo.update({
       where: {
         id,
+        userId: user.id,
       },
       data: { complete, description },
     });

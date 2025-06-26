@@ -16,7 +16,7 @@ import {
   ShoppingBag,
 } from "lucide-react";
 import AppSidebarItem from "./app-sidebar-item";
-import { auth } from "@/auth/auth";
+import { getUserSessionServer } from "@/auth/actions/auth-actions";
 
 const menuItems = [
   { title: "Dashboard", icon: <LayoutDashboardIcon />, url: "/dashboard" },
@@ -35,16 +35,18 @@ const menuItems = [
 ];
 
 export async function AppSidebar() {
-  const session = await auth();
+  const user = await getUserSessionServer();
 
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="flex flex-col items-center">
         <NavUser
           user={{
-            name: session?.user?.name ?? "Unknown User",
-            role: Array.isArray(session?.user?.roles) ? session?.user?.roles : [session?.user?.roles ?? "Client"],
-            avatar: session?.user?.image ?? "",
+            name: user?.name ?? "Unknown User",
+            role: Array.isArray(user?.roles)
+              ? user?.roles
+              : [user?.roles ?? "Client"],
+            avatar: user?.image ?? "",
           }}
         />
       </SidebarHeader>
