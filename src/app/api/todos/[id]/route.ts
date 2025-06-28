@@ -50,7 +50,7 @@ export async function PUT(
   );
   const user = await getUserSessionServer();
   if (!user) {
-    return null;
+    return NextResponse.json({ message: "Can't update" }, { status: 500 });
   }
 
   try {
